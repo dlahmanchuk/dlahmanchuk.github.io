@@ -7,6 +7,9 @@
   --gold: #8B5A2B;        /* warm brown */
   --muted: #666C73;
   --max: 720px;
+  --nav-bg: rgba(251,250,247,0.92);
+  --now-bg: #FFFDFC;
+  --role-bg: rgba(36,78,116,0.04);
 }
 
 *,*::before,*::after{
@@ -54,7 +57,7 @@ a{
 nav{
   position: sticky;
   top: 0;
-  background: rgba(251,250,247,0.92);
+  background: var(--nav-bg);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
   z-index: 10;
@@ -208,7 +211,7 @@ section h2{
   border-radius: 3px;
   padding: 5px 9px;
   color: var(--muted);
-  background: rgba(36,78,116,0.04);
+  background: var(--role-bg);
 }
 
 /* ---------- ledger rows ---------- */
@@ -301,7 +304,7 @@ section h2{
   border-left: 3px solid var(--gold);
   padding: 18px 20px;
   border-radius: 2px;
-  background: #FFFDFC;
+  background: var(--now-bg);
 }
 
 .now-box p{
@@ -359,6 +362,9 @@ footer{
   --accent-soft: #34D399;
   --gold: #FFB74D;
   --muted: #9CA3AF;
+  --nav-bg: rgba(18,18,18,0.8);
+  --now-bg: #1E1E1E;
+  --role-bg: rgba(255,255,255,0.05);
 }
 .theme-toggle {
   background: transparent;
