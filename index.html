@@ -22,7 +22,9 @@
       <li><a href="#interests">Interests</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button id="theme-toggle" aria-label="Toggle dark mode" class="theme-toggle">🌙</button>
+    <button id="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode" class="theme-toggle">
+      <img src="moon-solid-full.svg" alt="" class="theme-icon" aria-hidden="true">
+    </button>
   </div>
 </nav>
 
@@ -122,15 +124,25 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('.theme-icon');
     const storedTheme = localStorage.getItem('theme');
-    if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-      themeToggle.innerHTML = '☀️';
+
+    function setThemeIcon(isDark) {
+      themeIcon.src = isDark ? 'sun-solid-full.svg' : 'moon-solid-full.svg';
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      themeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
     }
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isInitialDark = storedTheme === 'dark' || (!storedTheme && prefersDark);
+
+    document.documentElement.classList.toggle('dark', isInitialDark);
+    setThemeIcon(isInitialDark);
+
     themeToggle.addEventListener('click', () => {
       document.documentElement.classList.toggle('dark');
       const isDark = document.documentElement.classList.contains('dark');
-      themeToggle.innerHTML = isDark ? '☀️' : '🌙';
+      setThemeIcon(isDark);
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
   });
